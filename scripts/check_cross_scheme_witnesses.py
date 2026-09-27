@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
-"""Independent, standard-library-only finite checks; never writes files.
+"""Check eight privacy witnesses using the Python standard library.
 
 Default output includes complete accepted sets and exact TCSVT21 Fraction
 pmfs. --summary omits long sets; --csv prints the compact evidence table.
 
-Scope: paper-text coefficient-stage interpretations, not JPEG end-to-end
-replication. TCSVT21 fixes public authentication bit zero and samples its
-hidden 00/11 patterns before uniform coefficient rejection. MBE22 checks
-reachable sets without assigning probabilities to the source solver.
-SBC24 preserves regulation and explicitly uses odd-position metadata for
-authorized recovery. Its stability check includes dequantization with a
-common grayscale JPEG QF=90 table and checks exact pre-rounding spatial
-values for the declared DC-only blocks. Eight- and nine-bit prefix readings are kept
-separate; neither reading is claimed to be the source's unique semantics.
+These are coefficient-stage checks; they do not encode or decode JPEG files.
+TCSVT21 fixes the public bit to zero and samples the hidden 00/11 pattern
+before uniform coefficient rejection. MBE22 enumerates reachable sets without
+a solver probability model. SBC24 checks regulation, recovery with odd-position
+metadata, and DC-only stability before rounding, using a common QF=90 luminance
+quantization table. Eight- and nine-bit prefix interpretations are checked
+separately.
 
 Source locators: TCSVT21 Algorithm 1; MBE22 Eq. (2.7), Algorithm 1 Steps
-4--7; SBC24 Algorithm 1 and Eqs. (13)--(20). The SBC24 nine-bit witness is
-a new finite verification for this revision, not an original image result.
+4--7; SBC24 Algorithm 1 and Eqs. (13)--(20).
 """
 
 from __future__ import annotations
@@ -273,7 +270,7 @@ def sbc_witness(width: int, secrets: tuple[int, int]) -> dict[str, object]:
                              "recompression_table": list(recompression_qm),
                              "dc_step": sharing_qm[0],
                              "minimum_step": min(sharing_qm)},
-            "provenance": "new_revision_check" if width == 9 else "existing_USENIX_witness"}
+            "provenance": "finite_coefficient_enumeration"}
 
 
 def main() -> None:

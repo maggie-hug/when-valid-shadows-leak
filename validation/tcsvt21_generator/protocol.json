@@ -64,6 +64,5 @@
   "aggregate": "Average four participant-domain accuracies within each source trial, preserving correlation of the two shares generated together",
   "failure_handling": "Any support, reconstruction, acceptance, or PNG round-trip mismatch is a validation failure; report corrected GOF rejections and failed equivalence without adding trials or changing the margin",
   "scope": "Declared (2,2), F_257, source-compatible image generator; not original-author implementation, larger thresholds, JPEG pipeline, or open-world recognition",
-  "manuscript_policy": "Do not modify main.tex or main.pdf during this validation",
-  "_publication_note": "Original machine-specific absolute paths were redacted for publication. Numerical settings, measurements, seeds, timestamps, and original hashes are unchanged. Original code hashes describe the original execution files, before public entry-point changes."
+  "_publication_note": "Local paths redacted; hashes refer to the original execution files."
 }

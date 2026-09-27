@@ -1,8 +1,8 @@
 """Validate a source-rule generator against a separately implemented channel.
 
-The reference module is used for the oracle and decoder ONLY. The generator
-receives secret pixels, public bits, coefficient domain, and an RNG, never W.
-All output files belong to this validation directory, not manuscript data/.
+The generator takes secret pixels, public bits, a coefficient domain, and an RNG.
+The separate reference channel supplies expected distributions and decoder
+likelihoods. Outputs are written to outputs/tcsvt21_generator by default.
 """
 from __future__ import annotations
 

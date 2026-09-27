@@ -35,5 +35,5 @@
   },
   "observation_source": "replayed enumerated-channel sampling",
   "scope": "decoder ablation at unchanged probability-selected Greedy positions",
-  "_publication_note": "Original machine-specific absolute paths were redacted for publication. Numerical settings, measurements, seeds, timestamps, and original hashes are unchanged. Original code hashes describe the original execution files, before public entry-point changes."
+  "_publication_note": "Local paths redacted; hashes refer to the original execution files."
 }

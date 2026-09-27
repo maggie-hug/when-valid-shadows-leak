@@ -73,8 +73,7 @@ The default base seed is 20260830; there are 1,000 random schedules. Outputs
 are saved under outputs/linkage, or in the directory given by --output-dir.
 The retained paper records remain in data/.
 
-For a short execution check, use --trials 2 --random-schedules 4. This checks
-the pipeline; it is not the paper's 1,000-trial result.
+For a smoke test, use --trials 2 --random-schedules 4. Paper runs use 1,000 trials.
 
 The main attack samples fresh observations from the enumerated pixel channel.
 The independent generator below instead performs complete image generation
@@ -154,10 +153,9 @@ Audited sources:
 ## Published records and license
 
 data/ and validation/*/results/ contain the retained CSV/JSON measurements.
-Machine-specific paths in metadata were redacted; numerical settings,
-measurements, seeds, timestamps, and original execution hashes remain intact.
-Public entry-point changes concern imports, data-path arguments, and output
-locations. release_manifest.json records original and published code hashes.
+Local paths in experiment metadata are redacted; the recorded hashes refer to
+the original execution files. release_manifest.json lists the result directories
+and verification commands. Git history preserves the initial release at v0.1.0.
 
 The code is released under the MIT license. Third-party datasets remain under
 their respective terms. See CITATION.cff for software citation metadata.

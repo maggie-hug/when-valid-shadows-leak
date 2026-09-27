@@ -6,8 +6,8 @@ Primary text: https://www.researchgate.net/publication/345333246_A_Common_Method
 
 Equation (1), p. 2899, supplies the RG-VSS primitive. Algorithm 1, p. 2900,
 supplies the per-pixel duplicate-and-permute construction, polynomial, and
-rejection loop. No empirical distribution, accepted-set table, or external
-implementation is used here.
+rejection loop. These rules are implemented directly, independently of the
+enumerated observation channel.
 
 The source calls polynomial coefficients random, later describes them as
 grayscale, and counts 256**(k-1) coefficient choices (p. 2901). Consequently
@@ -204,10 +204,8 @@ def generate(
     ``max_rounds`` is a positive per-pixel attempt limit, not a fallback rule.
     Any unfinished pixels cause GenerationExhaustedError with diagnostics.
 
-    The optional ``negative_control_resample_pattern=True`` DELIBERATELY
-    VIOLATES Algorithm 1: it redraws the complete hidden triple for rejected
-    pixels before their next coefficient attempt. It exists only to measure
-    this implementation error; it must not be labeled source-faithful output.
+    Setting ``negative_control_resample_pattern=True`` redraws the hidden
+    triple after rejection as a negative control. Algorithm 1 keeps it fixed.
     """
     if not isinstance(secret, np.ndarray) or secret.dtype != np.dtype(np.uint8):
         raise TypeError("secret must be a numpy ndarray with dtype uint8")

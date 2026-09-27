@@ -3,33 +3,19 @@
 Run from the repository root after generating the full-shadow examples:
     python figures/make_linkage_example.py --dataset-root /path/to/BSDS500/data
 
-The example is fixed without inspecting outcomes: participant 1, full-field
-reading, first saved trial, first lexicographic BSDS500 test image. The existing
-12-position greedy schedule is loaded without reselection. The shadow is taken
-from the independent source-rule generator's saved full-image trial, never
-sampled from the likelihood tables. It is losslessly PNG-encoded and decoded
-before the 12 values are scored against all 200 saved gallery images.
+The example is chosen before inspecting outcomes: participant 1, full-field
+domain, first saved trial, first lexicographic BSDS500 test image. It uses the
+existing 12-position greedy schedule and the independent generator's full-image
+shadow. The script verifies the saved trace, replays its seed, and performs a
+lossless PNG round trip before scoring all 200 gallery images with a uniform
+prior. The six thumbnails show candidates with positive likelihood after six
+positions; decoding uses the full gallery and all 12 positions.
 
-The figure shows the observed 12-value strip, audited likelihood scoring, and
-selection of an existing gallery candidate. The six displayed thumbnails are all
-candidates with positive likelihood after the first six positions, in gallery
-order; they are a display subset, not the decoder's gallery. Only the matched
-candidate's identifier is annotated. The prefix candidate counts printed by the
-loader are diagnostics and are not plotted as a performance curve.
-
-Input provenance is retained in validation/tcsvt21_generator/protocol.json
-and outputs/tcsvt21_generator/{full_shadow_example_full_field.npz,
-linkage_summary.json}.
-This script checks the complete saved generator trace and replays its first
-trial using the recorded seed. It changes no experimental inputs or aggregates.
-The output contains the original 64x64 grayscale arrays and vector annotations;
-no contrast enhancement, denoising, or synthesized image content is used.
-
-The white paper layout distinguishes observed values, the source-rule model,
-and likelihood scoring. W_b and the 12-position product follow the manuscript;
-the model is not estimated from the observed shadow. Ranking uses a uniform prior.
-Use preview_only=True to render only the preview PNG. The default layout
-omits the left outer frame; show_shadow_frame=True adds that frame.
+Inputs: validation/tcsvt21_generator/protocol.json and
+outputs/tcsvt21_generator/full_shadow_example_full_field.npz.
+Outputs: figures/single_shadow_linkage_example.pdf and a preview in tmp/build/.
+Images use the saved 64x64 grayscale samples. draw_figure accepts preview_only
+to render only the PNG and show_shadow_frame to add the left outer frame.
 """
 from __future__ import annotations
 
@@ -96,7 +82,7 @@ def load_example(generator_output_dir=None, dataset_root=None):
     stop = protocol["coefficient_stops"][READING]
     assert stop == 257 and protocol["budget"] == BUDGET
 
-    # All saved source executions, not just the plotted target, must be valid.
+    # Verify the saved source executions.
     x1, x2 = source_shares(gallery, record["coefficient"])
     assert np.array_equal(x1, record["shadow1"])
     assert np.array_equal(x2, record["shadow2"])
@@ -126,7 +112,7 @@ def load_example(generator_output_dir=None, dataset_root=None):
     assert len(positions) == len(np.unique(positions)) == BUDGET
     assert np.all(mask.ravel()[positions] == 0)
 
-    # Observe just participant 1; participant 2 above is used for validation only.
+    # Decode participant 1's observed shadow.
     shadow = record[f"shadow{PARTICIPANT}"][TARGET]
     buffer = io.BytesIO()
     Image.fromarray(shadow).save(buffer, format="PNG")
@@ -176,7 +162,7 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
     paper_width_in = 178 / 25.4
     fig = plt.figure(figsize=(paper_width_in, paper_width_in * H / W),
                      facecolor="white")
-    # Grouping lives behind the data images and all labels/connectors.
+    # Draw group frames behind images and labels.
     background = fig.add_axes([0, 0, 1, 1], frameon=False, zorder=0)
     background.set_xlim(0, W)
     background.set_ylim(Y0, Y0 + H)
@@ -211,7 +197,7 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
 
 
     def image(x, y, size, array, *, match=False, observed=False):
-        # Original 64x64 grayscale samples; no contrast or content alteration.
+        # Display 64x64 grayscale samples on the fixed 0--255 scale.
         ax = fig.add_axes([x / W, (y - Y0) / H, size / W, size / H], zorder=1)
         ax.imshow(array, cmap="gray", vmin=0, vmax=255,
                   interpolation="nearest", origin="upper")
@@ -223,7 +209,7 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
             spine.set_color(BLUE if match else "#B4BBC0")
             spine.set_linewidth(1.8 if match else 0.55)
         if match:
-            # A second, thin frame is outside the data image, not a painted overlay.
+            # Add an outer match frame.
             layer.add_patch(Rectangle((x - 2, y - 2), size + 4, size + 4,
                                       fill=False, edgecolor=BLUE, linewidth=0.45))
         if observed:
@@ -239,12 +225,12 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
         return ax
 
 
-    # Equal-height semantic regions, with no stage numbers or colored banners.
+    # Label the observed shadow.
     text(14, 179, "Observed shadow", fontsize=9.6, weight="bold")
     text(14, 166, "12 selected pixels", fontsize=9)
     image(14, 42, 114, shadow, observed=True)
 
-    # Amber encodes exactly the same selected observations in the image and vector.
+    # Mark selected pixels and their observed values in amber.
     text(256, 179, "Pixel values and scoring", fontsize=9.6,
          weight="bold", ha="center")
     strip_x, strip_y, cell, gap, cell_h = 175, 136, 12.3, 1.3, 20
@@ -258,12 +244,11 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
     # Image, observation vector, and gallery thumbnails share a common top edge.
     connector([(132, 146), (169, 146)], color=AMBER, width=0.85)
     text(150, 159, "Read", ha="center", fontsize=9, color=AMBER)
-    # Observations enter scoring directly. They do not generate the audited model.
+    # Route observed bytes to likelihood scoring.
     connector([(338, 146), (344, 146), (344, 61), (339, 61)],
               color=AMBER, width=0.8)
 
-    # Light semantic boundaries distinguish a model input from a computation.
-    # Draw them behind labels and arrows; values and ranking remain unboxed.
+    # Draw model and scoring boxes behind their labels.
     background.add_patch(FancyBboxPatch(
         (173, 82), 166, 31, boxstyle="round,pad=0,rounding_size=2",
         facecolor="#F3F7FA", edgecolor="#A9BFCE", linewidth=0.6,
@@ -277,7 +262,7 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
          weight="bold", color=BLUE, ha="center")
     text(256, 91, r"$W_b(y\mid s)$", fontsize=10.4, color=BLUE, ha="center")
     connector([(256, 81), (256, 73)], color=BLUE, width=0.8)
-    # A single computation formula connects audit to image identity.
+    # Score each candidate over the selected positions.
     text(256, 64, "Likelihood scoring", fontsize=9.2,
          weight="bold", color=BLUE, ha="center")
     formula = text(
@@ -303,15 +288,14 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
                  fontsize=9, color=BLUE, weight="bold", ha="center")
             match_anchor = (x - 4, y + size / 2)
     assert match_anchor is not None
-    # Smooth, unambiguous selection edge; not a candidate-count or accuracy curve.
+    # Connect the ranking output to the matched gallery image.
     connector([(308, 15), (392, 15), (360, match_anchor[1]), match_anchor],
               curved=True, width=1.1)
 
-    # The established caption carries public-input timing and matched-preprocessing
-    # assumptions. Keep only the outcome key inside this paper-width preview.
+    # Explain the matched-image outline.
     text(475, 24, "Outline: matched image", fontsize=9, ha="center")
 
-    # Guard the exact scoring notation at the designed paper-figure dimensions.
+    # Check that the scoring formula fits its box.
     fig.canvas.draw()
     formula_bounds = formula.get_window_extent(fig.canvas.get_renderer())
     formula_bounds = formula_bounds.transformed(layer.transData.inverted())

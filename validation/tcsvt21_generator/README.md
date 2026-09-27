@@ -5,9 +5,8 @@ polynomial evaluation, and coefficient retry loop. It receives secrets,
 public bits, a coefficient domain, and an RNG. Accepted-set tables and
 observation distributions are used only by the separate validator/attacker.
 
-The frozen protocol is in protocol.json. Its numerical settings match the
-retained execution; its original dataset path is replaced by a portable
-placeholder. Pass the real path with --dataset-root for linkage/all.
+protocol.json contains the predeclared numerical settings used in the retained
+run. Pass the dataset path with --dataset-root for linkage/all.
 
     python validation/tcsvt21_generator/validate_generator.py --stage exact
     python validation/tcsvt21_generator/validate_generator.py --stage marginal
@@ -18,8 +17,8 @@ Stages:
 - exact exhausts 256 secrets, both domains, four hidden patterns, and hidden
   coin/permutation primitives; it compares against separately implemented channels.
 - marginal draws 16,384 samples per secret/public-bit/domain combination,
-  performs Pearson tests with Holm correction, and retains the deliberately
-  incorrect pattern-resampling control.
+  performs Pearson tests with Holm correction, and includes the incorrect
+  pattern-resampling negative control.
 - linkage generates 100 full-gallery trials per domain. Both complete
   participant shadows undergo lossless PNG write/read before the saved
   12-pixel schedules are applied. Every pixel is checked for reconstruction.
@@ -38,4 +37,4 @@ results/posthoc_diagnostics.json preserve both findings.
 
 Fresh outputs go to outputs/tcsvt21_generator or --output-dir. Large raw
 histograms, complete generated examples, and PNG files are produced locally;
-the published original evidence consists of CSV/JSON records.
+the retained results are CSV/JSON records.
