@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "draws_per_secret_bit_domain": 16384,
+  "source_pixel_pairs": 16777216,
+  "coefficient_draws": 67652363,
+  "max_attempts": 67,
+  "gof_tests": 3072,
+  "participant_row_tests": 2048,
+  "familywise_alpha": 0.01,
+  "holm_rejections": 0,
+  "impossible_observations": 0,
+  "minimum_expected_cell_count": 40.756218905472636,
+  "mean_empirical_participant_tv": 0.04184520279201976,
+  "max_empirical_participant_tv": 0.05568763692542989,
+  "negative_control_tests": 72,
+  "negative_control_holm_rejections": 0,
+  "negative_control_is_deliberately_wrong": true,
+  "interpretation": "No corrected rejection is non-detection, not a proof of distributional equality"
+}

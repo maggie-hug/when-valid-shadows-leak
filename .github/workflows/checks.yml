@@ -1,0 +1,15 @@
+name: Exact audit checks
+on:
+  push:
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+      - run: python scripts/check_cross_scheme_witnesses.py --summary
+      - run: python scripts/check_tcsvt21_trace.py
+      - run: python scripts/check_reported_results.py

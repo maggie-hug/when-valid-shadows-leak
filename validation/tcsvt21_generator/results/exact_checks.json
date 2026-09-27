@@ -1,0 +1,76 @@
+{
+  "status": "completed",
+  "primitive_pattern_counts": {
+    "0": {
+      "(0, 0)": 6,
+      "(1, 1)": 6
+    },
+    "1": {
+      "(0, 1)": 4,
+      "(0, 0)": 2,
+      "(1, 0)": 4,
+      "(1, 1)": 2
+    }
+  },
+  "accepted_groups_checked": 2048,
+  "coefficient_state_decisions": 525312,
+  "max_abs_channel_difference": 0.0,
+  "rows": [
+    {
+      "reading": "full_field",
+      "participant": 1,
+      "public_bit": 0,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "full_field",
+      "participant": 1,
+      "public_bit": 1,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "full_field",
+      "participant": 2,
+      "public_bit": 0,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "full_field",
+      "participant": 2,
+      "public_bit": 1,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "byte_domain",
+      "participant": 1,
+      "public_bit": 0,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "byte_domain",
+      "participant": 1,
+      "public_bit": 1,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "byte_domain",
+      "participant": 2,
+      "public_bit": 0,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    },
+    {
+      "reading": "byte_domain",
+      "participant": 2,
+      "public_bit": 1,
+      "channel_rows": 256,
+      "max_abs_channel_difference": 0.0
+    }
+  ]
+}

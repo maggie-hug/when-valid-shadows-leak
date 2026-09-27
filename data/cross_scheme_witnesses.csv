@@ -1,0 +1,9 @@
+scheme,reading,p,k,n,evaluation_points,condition,observed_participant,secret0,secret1,accepted_counts0,accepted_counts1,reachable_count0,reachable_count1,tv,probability_semantics,recovery_scope
+TCSVT21,full-field,257,2,2,1;2,authentication_bit=0,1,3,252,00:63;11:63,00:63;11:63,126,126,1,half_per_pattern_uniform_coefficient_rejection,raw_shared_symbol
+TCSVT21,full-field,257,2,2,1;2,authentication_bit=0,2,0,16,00:63;11:64,00:61;11:61,127,122,1,half_per_pattern_uniform_coefficient_rejection,raw_shared_symbol
+TCSVT21,byte-domain,257,2,2,1;2,authentication_bit=0,1,3,252,00:63;11:62,00:63;11:63,125,126,1,half_per_pattern_uniform_coefficient_rejection,raw_shared_symbol
+TCSVT21,byte-domain,257,2,2,1;2,authentication_bit=0,2,0,16,00:63;11:64,00:61;11:61,127,122,1,half_per_pattern_uniform_coefficient_rejection,raw_shared_symbol
+MBE22,w=8,257,2,2,1;2,cover=128;128;delta=4,1,113,129,1,8,1,8,1,any_solver_returning_an_accepted_value,selected_coefficients_only
+MBE22,w=9,257,2,2,1;2,cover=128;128;delta=4,1,97,129,1,16,1,16,1,any_solver_returning_an_accepted_value,selected_coefficients_only
+SBC24,w=8,257,2,2,1;2,cover=252;0;delta=4;l=1;alpha=1/2;QF=90;Q_DC=3;QM1=QM2;min_QM=2,2,208,209,1,1,1,1,1,singleton_candidates,DC_only_block_with_odd_metadata
+SBC24,w=9,257,2,2,1;2,cover=252;0;delta=4;l=1;alpha=1/2;QF=90;Q_DC=3;QM1=QM2;min_QM=2,2,160,253,1,1,1,1,1,singleton_candidates,DC_only_block_with_odd_metadata

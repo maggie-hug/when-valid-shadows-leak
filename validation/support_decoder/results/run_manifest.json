@@ -1,0 +1,39 @@
+{
+  "status": "completed",
+  "started_at": "2026-09-16T10:21:37.410162+00:00",
+  "completed_at": "2026-09-16T10:22:51.630254+00:00",
+  "runtime_seconds": 74.22010890000001,
+  "python": "3.13.15",
+  "numpy": "2.5.3",
+  "pillow": "12.3.0",
+  "dataset_root": "<original-dataset>",
+  "mask": "100075.jpg",
+  "seed": 20260830,
+  "budgets": [
+    8,
+    12
+  ],
+  "trials_per_condition": 1000,
+  "input_paths": [
+    "<original-project>/data/repeated_shadow_summary_p1_b12.json",
+    "<original-project>/data/repeated_shadow_summary_p1_b8.json",
+    "<original-project>/data/repeated_shadow_summary_p2_b12.json",
+    "<original-project>/data/repeated_shadow_summary_p2_b8.json",
+    "<original-project>/data/repeated_shadow_trials_p1_b12.csv",
+    "<original-project>/data/repeated_shadow_trials_p1_b8.csv",
+    "<original-project>/data/repeated_shadow_trials_p2_b12.csv",
+    "<original-project>/data/repeated_shadow_trials_p2_b8.csv"
+  ],
+  "protocol": "<original-project>/validation/support_decoder/README.md",
+  "script": "<original-project>/validation/support_decoder/run_support_ablation.py",
+  "tie_rule": "lowest candidate index for both decoders",
+  "numeric_tie_clarification": {
+    "recorded_after_run": "2026-09-16",
+    "map": "first maximum of accumulated float64 log scores in saved position order",
+    "support": "lowest surviving candidate index",
+    "measurements_changed": false
+  },
+  "observation_source": "replayed enumerated-channel sampling",
+  "scope": "decoder ablation at unchanged probability-selected Greedy positions",
+  "_publication_note": "Original machine-specific absolute paths were redacted for publication. Numerical settings, measurements, seeds, timestamps, and original hashes are unchanged. Original code hashes describe the original execution files, before public entry-point changes."
+}

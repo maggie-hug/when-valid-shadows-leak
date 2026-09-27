@@ -1,0 +1,69 @@
+{
+  "protocol_version": 1,
+  "frozen_before_execution": true,
+  "purpose": "Independent source-rule generation versus the existing TCSVT21 finite-channel model",
+  "source_doi": "10.1109/TCSVT.2020.3025527",
+  "source_fulltext_url": "https://www.researchgate.net/publication/345333246_A_Common_Method_of_Share_Authentication_in_Image_Secret_Sharing",
+  "source_locators": [
+    "printed p. 2899, Section II-B, Eq. (1)",
+    "printed p. 2900, Algorithm 1, Steps 1-5",
+    "printed pp. 2900-2901, Theorem 1 proof and coefficient discussion"
+  ],
+  "implementation_status": "Independent reconstruction of declared source semantics, not source-author software",
+  "proposal_assumption": "Independent uniform coefficient proposals on each declared domain; the source does not fully specify this probability law",
+  "permutation_assumption": "Independent uniform permutation of the three hidden RG bits at each pixel",
+  "coefficient_stops": {
+    "full_field": 257,
+    "byte_domain": 256
+  },
+  "participants": [
+    1,
+    2
+  ],
+  "base_seed": 20260914,
+  "rng": "numpy.random.PCG64 with SeedSequence([base_seed, stage, domain_index, bit_or_trial, optional_chunk_start])",
+  "local_secrets": "Every integer from 0 through 255",
+  "local_public_bits": [
+    0,
+    1
+  ],
+  "row_draws": 16384,
+  "row_chunk_secrets": 16,
+  "goodness_of_fit": "Pearson chi-square on positive expected cells, Holm correction across all participant rows and hidden-pattern rows",
+  "familywise_alpha": 0.01,
+  "exact_channel_max_abs_tolerance": 1e-14,
+  "negative_control": "Deliberately resample hidden pattern upon coefficient rejection; not the audited source execution",
+  "negative_control_secrets": [
+    0,
+    1,
+    3,
+    16,
+    64,
+    127,
+    128,
+    252,
+    255
+  ],
+  "dataset_root": "datasets/BSDS500/data",
+  "gallery_split": "test",
+  "gallery_size": 200,
+  "image_size": 64,
+  "preprocessing": "Pillow L grayscale, largest centered square, LANCZOS resize to 64x64; lexicographic filenames",
+  "authentication_source": "100075.jpg",
+  "authentication_mask": "Strictly above reference-image median is one; otherwise zero",
+  "budget": 12,
+  "schedule_source": "Existing data/repeated_shadow_summary_p{participant}_b12.json, greedy_positions per domain; no reselection",
+  "full_gallery_trials_per_domain": 100,
+  "observation_path": "Full image generation, lossless PNG encode/decode of both shares, selected-coordinate extraction, MAP with enumerated channel likelihoods",
+  "ground_truth": "Identity of the real BSDS500 input image used to generate the shadow",
+  "tie_breaking": "Lowest gallery index",
+  "baseline_source": "Existing 1000-trial greedy rows in data/repeated_shadow_trials_p{participant}_b12.csv",
+  "comparison": "Independent-run difference of mean top-1 fractions; normal 95% CI using both trial-level variances",
+  "equivalence_margin_fraction": 0.005,
+  "equivalence_rule": "Require the whole two-sided 95% CI for source minus channel accuracy to lie within +/-0.5 percentage points for each stratum and the equal-stratum aggregate",
+  "aggregate": "Average four participant-domain accuracies within each source trial, preserving correlation of the two shares generated together",
+  "failure_handling": "Any support, reconstruction, acceptance, or PNG round-trip mismatch is a validation failure; report corrected GOF rejections and failed equivalence without adding trials or changing the margin",
+  "scope": "Declared (2,2), F_257, source-compatible image generator; not original-author implementation, larger thresholds, JPEG pipeline, or open-world recognition",
+  "manuscript_policy": "Do not modify main.tex or main.pdf during this validation",
+  "_publication_note": "Original machine-specific absolute paths were redacted for publication. Numerical settings, measurements, seeds, timestamps, and original hashes are unchanged. Original code hashes describe the original execution files, before public entry-point changes."
+}

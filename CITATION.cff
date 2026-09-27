@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "Please cite the manuscript and this software when using the code."
+type: software
+title: "When Valid Shadows Leak: Exact Privacy Audits of Secret Image Sharing"
+version: 0.1.0
+date-released: 2026-09-27
+license: MIT
+repository-code: "https://github.com/maggie-hug/when-valid-shadows-leak"
+authors:
+  - family-names: Li
+    given-names: Meijuan
+  - family-names: Cui
+    given-names: Zhe
+  - family-names: Liu
+    given-names: Yuxuan
+  - family-names: Wang
+    given-names: Yidong
+  - family-names: Wei
+    given-names: Ziwen
+  - family-names: Deng
+    given-names: Wei

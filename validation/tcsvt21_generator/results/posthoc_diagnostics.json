@@ -1,0 +1,258 @@
+{
+  "status": "completed",
+  "timing": "post-hoc after frozen negative-control tests returned zero rejections",
+  "not_a_replacement_for_preregistered_gof": true,
+  "trace_checks": [
+    {
+      "coefficient_stop": 256,
+      "secret": 0,
+      "first_rejection_reason": "hidden_parity",
+      "fixed_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "wrong_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_coin",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "negative_control_detected_by_trace": true
+    },
+    {
+      "coefficient_stop": 256,
+      "secret": 255,
+      "first_rejection_reason": "field_residue_256",
+      "fixed_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "wrong_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_coin",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "negative_control_detected_by_trace": true
+    },
+    {
+      "coefficient_stop": 257,
+      "secret": 0,
+      "first_rejection_reason": "hidden_parity",
+      "fixed_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "wrong_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_coin",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "negative_control_detected_by_trace": true
+    },
+    {
+      "coefficient_stop": 257,
+      "secret": 255,
+      "first_rejection_reason": "field_residue_256",
+      "fixed_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "wrong_state_events": [
+        {
+          "kind": "hidden_coin",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_coin",
+          "value": 1,
+          "count": 1
+        },
+        {
+          "kind": "hidden_permutation",
+          "value": 0,
+          "count": 1
+        },
+        {
+          "kind": "coefficient",
+          "value": 0,
+          "count": 1
+        }
+      ],
+      "negative_control_detected_by_trace": true
+    }
+  ],
+  "channel_rows_compared": 2048,
+  "maximum_wrong_order_tv_case": {
+    "coefficient_stop": 256,
+    "public_bit": 1,
+    "secret": 14,
+    "participant": 1,
+    "tv_wrong_order_vs_fixed_state": 0.02133333333333333,
+    "max_abs_cell_difference": 0.00022222222222222174
+  },
+  "rows_with_nonzero_wrong_order_tv_above_1e_14": 1534,
+  "interpretation": "Retry-order differences are measured deterministically; the original stochastic negative-control result remains unchanged"
+}

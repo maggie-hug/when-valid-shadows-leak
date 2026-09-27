@@ -1,0 +1,5 @@
+participant,domain,secret_left,secret_right,accepted_left_00,accepted_left_11,accepted_right_00,accepted_right_11,support_left,support_right,support_intersection,total_variation,bhattacharyya,equal_prior_map_success
+1,field,3,252,63,63,63,63,126,126,0,1,0,1
+1,byte,3,252,63,62,63,63,125,126,0,1,0,1
+2,field,0,16,63,64,61,61,127,122,0,1,0,1
+2,byte,0,16,63,64,61,61,127,122,0,1,0,1

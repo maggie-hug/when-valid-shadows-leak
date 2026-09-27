@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+outputs/
+datasets/
+.DS_Store
+*.log
+*.npz
+figures/*.pdf
+figures/*.png
+tmp/
