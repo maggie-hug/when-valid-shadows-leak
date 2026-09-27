@@ -142,13 +142,16 @@ The predeclared stochastic negative control produced zero corrected
 rejections; the post-hoc deterministic retry trace detects the incorrect
 pattern-resampling control. Both results are retained.
 
-Audited sources:
+## Audited source papers
 
-| Label | Source |
-|---|---|
-| TCSVT21 | X. Yan et al., A Common Method of Share Authentication in Image Secret Sharing, [DOI](https://doi.org/10.1109/TCSVT.2020.3025527) |
-| MBE22 | [DOI](https://doi.org/10.3934/mbe.2022538), Eq. (2.7), Algorithm 1, Steps 4-11 |
-| SBC24 | [DOI](https://doi.org/10.1109/TMM.2024.3407694), Algorithm 1, Eqs. (10), (13)-(20) |
+| Label | Paper and source | PDF |
+|---|---|---|
+| TCSVT21 | Yan et al., *A Common Method of Share Authentication in Image Secret Sharing*, IEEE TCSVT, 2021. [Publisher/DOI](https://doi.org/10.1109/TCSVT.2020.3025527) | [Repository copy](papers/TCSVT21.pdf) / [Publisher PDF](https://ieeexplore.ieee.org/ielx7/76/9471039/09201524.pdf) |
+| MBE22 | Jiang et al., *Meaningful secret image sharing for JPEG images with arbitrary quality factors*, MBE, 2022. [Publisher](https://www.aimspress.com/article/doi/10.3934/mbe.2022538) / [DOI](https://doi.org/10.3934/mbe.2022538) | [Repository copy](papers/MBE22.pdf) / [Publisher PDF](https://www.aimspress.com/aimspress-data/mbe/2022/11/PDF/mbe-19-11-538.pdf) |
+| SBC24 | Jiang et al., *Robust Secret Image Sharing Resistant to JPEG Recompression Based on Stable Block Condition*, IEEE TMM, 2024. [Publisher/DOI](https://doi.org/10.1109/TMM.2024.3407694) | [Author's public full text and PDF](https://www.researchgate.net/publication/381022466_Robust_Secret_Image_Sharing_Resistant_to_JPEG_Recompression_Based_on_Stable_Block_Condition) |
+
+[papers/README.md](papers/README.md) gives complete citations, the audited
+algorithm/equation locations, PDF versions, and third-party licenses.
 
 ## Published records and license
 
