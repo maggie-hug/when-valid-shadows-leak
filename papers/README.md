@@ -1,9 +1,8 @@
 # Audited source papers
 
-These are the three papers whose generation rules are implemented in
-`scripts/check_cross_scheme_witnesses.py`. Source details were checked on
-2026-09-28. The checks enumerate coefficient-stage privacy counterexamples;
-the JPEG checks cover coefficient, regulation, and stability arithmetic.
+`scripts/check_cross_scheme_witnesses.py` enumerates coefficient-stage privacy
+counterexamples for these three papers. The JPEG checks cover coefficient,
+regulation, and stability arithmetic.
 
 ## TCSVT21
 
@@ -67,9 +66,9 @@ DOI: [10.1109/TMM.2024.3407694](https://doi.org/10.1109/TMM.2024.3407694).
 
 The publicly posted author version identifies itself as an accepted manuscript
 and contains a [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) notice.
-Its file could not be downloaded during this update, so the repository provides
-the original download and full-text links. The local publisher copy requires
-IEEE permission for redistribution and is not included here.
+The repository links to that version and the publisher record. The IEEE
+publisher PDF is not included because redistribution permission has not been
+established.
 
 ## Third-party licenses
 

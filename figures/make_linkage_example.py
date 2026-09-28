@@ -1,21 +1,11 @@
-"""Figure 1: a recorded TCSVT21 single-shadow linkage example.
+"""Render the recorded TCSVT21 single-shadow linkage example.
 
 Run from the repository root after generating the full-shadow examples:
     python figures/make_linkage_example.py --dataset-root /path/to/BSDS500/data
 
-The example is chosen before inspecting outcomes: participant 1, full-field
-domain, first saved trial, first lexicographic BSDS500 test image. It uses the
-existing 12-position greedy schedule and the independent generator's full-image
-shadow. The script verifies the saved trace, replays its seed, and performs a
-lossless PNG round trip before scoring all 200 gallery images with a uniform
-prior. The six thumbnails show candidates with positive likelihood after six
-positions; decoding uses the full gallery and all 12 positions.
-
-Inputs: validation/tcsvt21_generator/protocol.json and
-outputs/tcsvt21_generator/full_shadow_example_full_field.npz.
-Outputs: figures/single_shadow_linkage_example.pdf and a preview in tmp/build/.
-Images use the saved 64x64 grayscale samples. draw_figure accepts preview_only
-to render only the PNG and show_shadow_frame to add the left outer frame.
+The example uses participant 1, the first full-field trial, and the first
+lexicographic BSDS500 test image. It checks the saved trace and PNG round trip
+before ranking all 200 gallery images at the recorded 12 positions.
 """
 from __future__ import annotations
 
@@ -162,7 +152,6 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
     paper_width_in = 178 / 25.4
     fig = plt.figure(figsize=(paper_width_in, paper_width_in * H / W),
                      facecolor="white")
-    # Draw group frames behind images and labels.
     background = fig.add_axes([0, 0, 1, 1], frameon=False, zorder=0)
     background.set_xlim(0, W)
     background.set_ylim(Y0, Y0 + H)
@@ -209,7 +198,6 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
             spine.set_color(BLUE if match else "#B4BBC0")
             spine.set_linewidth(1.8 if match else 0.55)
         if match:
-            # Add an outer match frame.
             layer.add_patch(Rectangle((x - 2, y - 2), size + 4, size + 4,
                                       fill=False, edgecolor=BLUE, linewidth=0.45))
         if observed:
@@ -225,12 +213,10 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
         return ax
 
 
-    # Label the observed shadow.
     text(14, 179, "Observed shadow", fontsize=9.6, weight="bold")
     text(14, 166, "12 selected pixels", fontsize=9)
     image(14, 42, 114, shadow, observed=True)
 
-    # Mark selected pixels and their observed values in amber.
     text(256, 179, "Pixel values and scoring", fontsize=9.6,
          weight="bold", ha="center")
     strip_x, strip_y, cell, gap, cell_h = 175, 136, 12.3, 1.3, 20
@@ -241,14 +227,11 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
                                   facecolor=(shade, shade, shade),
                                   edgecolor="#B4BBC0", linewidth=0.35))
     text(256, 125, "12 observed byte values", ha="center", fontsize=9)
-    # Image, observation vector, and gallery thumbnails share a common top edge.
     connector([(132, 146), (169, 146)], color=AMBER, width=0.85)
     text(150, 159, "Read", ha="center", fontsize=9, color=AMBER)
-    # Route observed bytes to likelihood scoring.
     connector([(338, 146), (344, 146), (344, 61), (339, 61)],
               color=AMBER, width=0.8)
 
-    # Draw model and scoring boxes behind their labels.
     background.add_patch(FancyBboxPatch(
         (173, 82), 166, 31, boxstyle="round,pad=0,rounding_size=2",
         facecolor="#F3F7FA", edgecolor="#A9BFCE", linewidth=0.6,
@@ -257,12 +240,10 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
         (173, 29), 166, 43, boxstyle="round,pad=0,rounding_size=2",
         facecolor="white", edgecolor=BLUE, linewidth=0.65,
     ))
-    # The source-rule audit independently supplies the observation distribution.
     text(256, 105, "Audited pixel distributions", fontsize=9,
          weight="bold", color=BLUE, ha="center")
     text(256, 91, r"$W_b(y\mid s)$", fontsize=10.4, color=BLUE, ha="center")
     connector([(256, 81), (256, 73)], color=BLUE, width=0.8)
-    # Score each candidate over the selected positions.
     text(256, 64, "Likelihood scoring", fontsize=9.2,
          weight="bold", color=BLUE, ha="center")
     formula = text(
@@ -288,11 +269,9 @@ def draw_figure(gallery, names, shadow, positions, counts, displayed, prediction
                  fontsize=9, color=BLUE, weight="bold", ha="center")
             match_anchor = (x - 4, y + size / 2)
     assert match_anchor is not None
-    # Connect the ranking output to the matched gallery image.
     connector([(308, 15), (392, 15), (360, match_anchor[1]), match_anchor],
               curved=True, width=1.1)
 
-    # Explain the matched-image outline.
     text(475, 24, "Outline: matched image", fontsize=9, ha="center")
 
     # Check that the scoring formula fits its box.
